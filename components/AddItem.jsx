@@ -37,7 +37,6 @@ function AddItem(props) {
           flexDirection: "row",
         }}
       >
-        {/* <Text>{textItem}</Text> */}
         <TextInput
           placeholder="Ingrese un item"
           style={StylesThis.textInput}

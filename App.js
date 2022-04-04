@@ -11,6 +11,14 @@ export default function App() {
   const [itemSelected, setItemSelected] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
 
+  const addItem = (textItem, numItem) => {
+    setItemList((currenItems) => [
+      ...currenItems,
+      { id: counter, value: textItem, qty: numItem },
+    ]);
+    setCounter(counter + 1);
+  };
+
   const onHandlerDelete = (id) => {
     setItemList((currentItems) =>
       currentItems.filter((item) => item.id !== id)
@@ -26,24 +34,27 @@ export default function App() {
     setModalVisible(!modalVisible);
   };
 
-  const addItem = (textItem, numItem) => {
-    setItemList((currenItems) => [
-      ...currenItems,
-      { id: counter, value: textItem, qty: numItem },
-    ]);
-    setCounter(counter + 1);
-  };
-
   const renderItem = (data) => (
-    <Text
-      style={Styles.eachItem}
-      key={data.item.id}
-      value={data.item.value}
-      qty={data.item.qty}
-      onPress={onHandlerModal.bind(this, data.item.id)}
-    >
-      {data.item.value + " ( " + data.item.qty + " ) "}
-    </Text>
+    <View style={{ alignContent: "space-around", flexDirection: "row" }}>
+      <Text
+        style={Styles.eachItem}
+        key={data.item.id}
+        value={data.item.value}
+        qty={data.item.qty}
+        onPress={onHandlerModal.bind(this, data.item.id)}
+      >
+        {data.item.value}
+      </Text>
+      <Text
+        style={Styles.eachItemQty}
+        key={data.item.id}
+        value={data.item.value}
+        qty={data.item.qty}
+        onPress={onHandlerModal.bind(this, data.item.id)}
+      >
+        {data.item.qty}
+      </Text>
+    </View>
   );
 
   return (

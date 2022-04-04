@@ -19,14 +19,27 @@ const Styles = StyleSheet.create({
     width: "100%",
   },
   eachItem: {
-    width: "100%",
+    width: "75%",
     marginVertical: 5,
+    marginLeft: 15,
     fontSize: 14,
     padding: 5,
     backgroundColor: "#f5efdf",
     borderLeftWidth: 2,
     borderLeftColor: "red",
     borderRadius: 5,
+  },
+  eachItemQty: {
+    width: "15%",
+    marginVertical: 5,
+    marginRight: 15,
+    fontSize: 14,
+    padding: 5,
+    backgroundColor: "#ceba81",
+    borderLeftWidth: 2,
+    borderLeftColor: "red",
+    borderRadius: 5,
+    textAlign: "center",
   },
 
   centeredView: {
