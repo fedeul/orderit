@@ -1,20 +1,22 @@
 import Styles from "../assets/Styles/mainStyles";
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  StyleSheet,
-  Pressable,
-} from "react-native";
+import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
 import { Dimensions } from "react-native-web";
+import ModalDropdown from "react-native-modal-dropdown";
 
 function AddItem(props) {
   const [textItem, setTextItem] = useState();
   const [numItem, setNumItem] = useState();
-  const [selectedUnit, setSelectedUnit] = useState();
-  const { onAddItem } = props;
+  const [orderReady, setOrderReady] = useState(false);
+
+  const { onAddItem, onCompleteOrder } = props;
+  const itemsAvailable = [
+    "Seleccione un item",
+    "🍔 Hambuerguesa con papas",
+    "🍕 Pizza",
+    "🥗 Ensalada",
+  ];
+  const [selectedUnit, setSelectedUnit] = useState(itemsAvailable[0]);
   const onHandlerChangeItem = (t) => {
     setTextItem(t);
   };
@@ -23,14 +25,15 @@ function AddItem(props) {
   };
 
   const onHandlerAddItem = () => {
-    console.log("Add: " + numItem + " of " + textItem);
+    console.log("Add: " + numItem + " of " + itemsAvailable[textItem]);
     setTextItem("");
     setNumItem("");
-    onAddItem(textItem, numItem);
+    setSelectedUnit(itemsAvailable[0]);
+    onAddItem(itemsAvailable[textItem], numItem);
   };
-  const onHandlerCleanInput = () => {
-    setTextItem("");
-    setNumItem("");
+  const onHandlerCompleteOrder = () => {
+    setOrderReady(true);
+    onCompleteOrder(orderReady);
   };
 
   return (
@@ -44,13 +47,23 @@ function AddItem(props) {
           flexDirection: "row",
         }}
       >
-        <TextInput
+        {/* <TextInput
           placeholder="Ingrese un item"
           style={StylesThis.textInput}
           value={textItem}
           onChangeText={onHandlerChangeItem}
           keyboardAppearance="dark"
-        ></TextInput>
+        ></TextInput> */}
+        <ModalDropdown
+          defaultValue={selectedUnit}
+          style={StylesThis.textInput}
+          dropdownStyle={StylesThis.textInput}
+          dropdownTextHighlightStyle={{ backgroundColor: "#55d059bf" }}
+          value={textItem}
+          onSelect={onHandlerChangeItem}
+          keyboardAppearance="dark"
+          options={itemsAvailable}
+        />
         <TextInput
           placeholder="Cantidad"
           style={StylesThis.numInput}
@@ -61,14 +74,12 @@ function AddItem(props) {
           maxLength={3}
         ></TextInput>
       </View>
-      {/* Estilo de botón básico */}
-      {/* <Button title="+ Add" onPress={onHandlerAddItem} /> */}
       <View style={{ flexDirection: "row", justifyContent: "center" }}>
         <Pressable
           style={[
             Styles.button,
             Styles.buttonOK,
-            { width: "70%", marginRight: "5%" },
+            { width: "50%", marginRight: "5%" },
           ]}
           onPress={onHandlerAddItem}
         >
@@ -76,10 +87,12 @@ function AddItem(props) {
         </Pressable>
 
         <Pressable
-          style={[Styles.button, Styles.buttonClear, { width: "15%" }]}
-          onPress={onHandlerCleanInput}
+          style={[Styles.button, Styles.buttonClear, { width: "45%" }]}
+          onPress={onHandlerCompleteOrder}
         >
-          <Text style={{ color: "black", textAlign: "center" }}>🗑</Text>
+          <Text style={{ color: "black", textAlign: "center" }}>
+            🛒 Finalizar pedido
+          </Text>
         </Pressable>
       </View>
     </View>

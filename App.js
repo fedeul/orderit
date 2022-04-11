@@ -1,4 +1,4 @@
-import { Text, View, FlatList, Alert, Pressable } from "react-native";
+import { Text, View, FlatList, Alert, Pressable, Image } from "react-native";
 import Styles from "./assets/Styles/mainStyles";
 import React, { useState } from "react";
 import ModalItem from "./components/Modal";
@@ -17,6 +17,7 @@ export default function App() {
   const [itemList, setItemList] = useState([]);
   const [itemSelected, setItemSelected] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
+  const [orderReady, setOrderReady] = useState(false);
 
   const addItem = (textItem, numItem) => {
     setItemList((currenItems) => [
@@ -26,6 +27,9 @@ export default function App() {
     setCounter(counter + 1);
   };
 
+  const finishOrder = () => {
+    setOrderReady(true);
+  };
   const onHandlerDelete = (id) => {
     setItemList((currentItems) =>
       currentItems.filter((item) => item.id !== id)
@@ -62,26 +66,58 @@ export default function App() {
         <Text style={Styles.eachItem}>{data.item.value}</Text>
         <Text style={Styles.eachItemQty}>{data.item.qty}</Text>
       </View>
+      <ModalItem
+        onDelete={deleteAlert}
+        item={itemSelected}
+        visible={modalVisible}
+        onCancel={closeModal}
+      />
     </Pressable>
   );
+
+  let content = (
+    <View style={{ flex: 5 }}>
+      <Text style={{ textAlign: "center", marginTop: 30 }}>
+        Tu orden está preparándose
+      </Text>
+      <Image
+        style={{ flex: 2, width: "100%", height: "100%" }}
+        source={require("./assets/orderPrep.gif")}
+      />
+      <Text style={{ textAlign: "left", marginTop: 30 }}>Detalle: </Text>
+      <FlatList
+        data={itemList}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
+    </View>
+  );
+
+  if (!orderReady) {
+    content = (
+      <>
+        <AddItem onAddItem={addItem} onCompleteOrder={finishOrder} />
+        <View style={Styles.containerText}>
+          <FlatList
+            data={itemList}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+          />
+          <ModalItem
+            onDelete={deleteAlert}
+            item={itemSelected}
+            visible={modalVisible}
+            onCancel={closeModal}
+          />
+        </View>
+      </>
+    );
+  }
 
   return (
     <View style={Styles.container}>
       <Header />
-      <AddItem onAddItem={addItem} />
-      <View style={Styles.containerText}>
-        <FlatList
-          data={itemList}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        />
-        <ModalItem
-          onDelete={deleteAlert}
-          item={itemSelected}
-          visible={modalVisible}
-          onCancel={closeModal}
-        />
-      </View>
+      {content}
     </View>
   );
 }
