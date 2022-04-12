@@ -76,20 +76,32 @@ export default function App() {
   );
 
   let content = (
-    <View style={{ flex: 5 }}>
+    <View style={{ flex: 1 }}>
       <Text style={{ textAlign: "center", marginTop: 30 }}>
         Tu orden está preparándose
       </Text>
       <Image
-        style={{ flex: 2, width: "100%", height: "100%" }}
+        style={{
+          flex: 3,
+          paddingVertical: 3,
+          maxWidth: "100%",
+          maxHeight: "100%",
+        }}
         source={require("./assets/orderPrep.gif")}
       />
-      <Text style={{ textAlign: "left", marginTop: 30 }}>Detalle: </Text>
-      <FlatList
-        data={itemList}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
+      <View
+        style={{
+          flex: 3,
+          paddingHorizontal: 5,
+        }}
+      >
+        <Text style={{ textAlign: "left", marginTop: 30 }}>Detalle: </Text>
+        <FlatList
+          data={itemList}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
     </View>
   );
 
