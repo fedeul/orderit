@@ -1,13 +1,11 @@
 import Styles from "../assets/Styles/mainStyles";
 import React, { useState } from "react";
 import { View, Text, TextInput, StyleSheet, Pressable } from "react-native";
-import { Dimensions } from "react-native-web";
 import ModalDropdown from "react-native-modal-dropdown";
 
-function AddItem(props) {
+function AddItem(props, { navigation }) {
   const [textItem, setTextItem] = useState();
   const [numItem, setNumItem] = useState();
-  const [orderReady, setOrderReady] = useState(false);
 
   const { onAddItem, onCompleteOrder } = props;
   const itemsAvailable = [
@@ -25,15 +23,18 @@ function AddItem(props) {
   };
 
   const onHandlerAddItem = () => {
-    console.log("Add: " + numItem + " of " + itemsAvailable[textItem]);
+    console.log(
+      "Added to the order: " + numItem + " of " + itemsAvailable[textItem]
+    );
     setTextItem("");
     setNumItem("");
     setSelectedUnit(itemsAvailable[0]);
     onAddItem(itemsAvailable[textItem], numItem);
   };
   const onHandlerCompleteOrder = () => {
-    setOrderReady(true);
-    onCompleteOrder(orderReady);
+    onCompleteOrder(() => {
+      navigation.navigate("OrderReady");
+    });
   };
 
   return (
