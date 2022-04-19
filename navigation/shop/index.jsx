@@ -1,13 +1,13 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { COLORS } from "../constants/colors";
+import { COLORS } from "../../constants/colors";
 
-import Home from "../screens/Home";
-import OrderReady from "../screens/OrderReady";
-import CategoriesScreen from "../screens/CategoriesScreen";
-import CategoryItemScreen from "../screens/CategoryItemScreen";
-import ItemDetailScreen from "../screens/ItemDetailScreen";
+// import Home from "../../screens/Home";
+// import OrderReady from "../../screens/OrderReady";
+import CategoriesScreen from "../../screens/CategoriesScreen";
+import CategoryItemScreen from "../../screens/CategoryItemScreen";
+import ItemDetailScreen from "../../screens/ItemDetailScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -40,7 +40,7 @@ const ShopNavigator = () => {
           component={ItemDetailScreen}
           options={({ route }) => ({ title: route.params.product.name })}
         />
-        <Stack.Screen name="OrderReady" component={OrderReady} />
+        {/* <Stack.Screen name="OrderReady" component={OrderReady} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
