@@ -2,16 +2,9 @@ import { Text, View, FlatList, Alert, Pressable, Image } from "react-native";
 import Styles from "../assets/Styles/mainStyles";
 import React, { useState } from "react";
 import ModalItem from "../components/Modal";
-import AddItem from "../components/AddItem";
-import { useFonts } from "expo-font";
-import AppLoading from "expo-app-loading";
+import AddItem from "./AddItem";
 
 export default function Home({ navigation }) {
-  const [loaded] = useFonts({
-    Mali: require("../assets/fonts/Mali-Regular.ttf"),
-    MaliBold: require("../assets/fonts/Mali-Bold.ttf"),
-  });
-  if (!loaded) return <AppLoading />;
   const [counter, setCounter] = useState(0);
   const [itemList, setItemList] = useState([]);
   const [itemSelected, setItemSelected] = useState({});

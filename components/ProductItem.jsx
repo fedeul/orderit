@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontFamily: "MaliBold",
+
+    fontFamily: "ComicNeueAngularBold",
   },
   details: {
     fontSize: 18,

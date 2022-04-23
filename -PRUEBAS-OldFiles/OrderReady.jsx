@@ -7,8 +7,8 @@ import AppLoading from "expo-app-loading";
 
 export default function OrderReady() {
   const [loaded] = useFonts({
-    Mali: require("../assets/fonts/Mali-Regular.ttf"),
-    MaliBold: require("../assets/fonts/Mali-Bold.ttf"),
+    ComicNeueAngular: require("../assets/fonts/ComicNeueAngular-Regular.ttf"),
+    ComicNeueAngularBold: require("../assets/fonts/ComicNeueAngular-Bold.ttf"),
   });
   if (!loaded) return <AppLoading />;
   const [itemList, setItemList] = useState([]);

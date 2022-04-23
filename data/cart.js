@@ -1,0 +1,31 @@
+export const CART = [
+  {
+    id: "11",
+    category: 2,
+    name: "Bob's Red Mill 25 lb. Vital Wheat Gluten",
+    cap: "Made from the endosperm of the highest quality wheat berries, Bob's Red Mill vital wheat gluten is a versatile ingredient for a number of recipes! It contains 75% to 80% protein, making it an excellent binding agent. Try adding it to artisan breads made from coarsely ground grains to create a light, fluffy texture and a lofty crumb that will make your baked creations truly stand out. A dash of vital wheat gluten will also help bind meat products and meat substitutes like meatballs, meatloaf, hamburgers, veggie patties, and even tofu!",
+    price: 130,
+    sale: false,
+    stock: 7,
+  },
+  {
+    id: 8,
+    name: "EROIR Bread Lame Tool in Wooden Storage Box",
+    category: 1,
+    img: "https://m.media-amazon.com/images/I/91eeyJt4rkL._AC_SL1500_.jpg",
+    cap: "Professional Ultimate Choice - Eroir bread making knife is designed to give your sourdough bread and French baguette a perfect oven spring.",
+    price: 14,
+    sale: true,
+    stock: 8,
+  },
+  {
+    id: 6,
+    name: "Pro Dough Pastry Scraper/Cutter/Chopper",
+    category: 1,
+    img: "https://m.media-amazon.com/images/I/71a+nwh-JFL._AC_SL1500_.jpg",
+    cap: "Pizz cutter/Dough scraper/Dough Cutter designed to scrape and split bread dough，So it's easy to use and make your baking more effective and No worry about hand and wrist fatigue！",
+    price: 9,
+    sale: true,
+    stock: 9,
+  },
+];

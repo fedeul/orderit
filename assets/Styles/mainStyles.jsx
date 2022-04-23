@@ -19,7 +19,7 @@ const Styles = StyleSheet.create({
     width: "100%",
   },
   eachItem: {
-    fontFamily: "MaliBold",
+    fontFamily: "ComicNeueAngularBold",
     width: "75%",
     marginVertical: 5,
     marginLeft: 15,

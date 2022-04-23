@@ -19,6 +19,7 @@ function ItemDetailScreen({ route }) {
       <ScrollView>
         <Text style={styles.title}>{item.name}</Text>
         <Image
+          resizeMode="contain"
           style={{
             marginVertical: 35,
             height: imageHeight,
@@ -44,10 +45,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 35,
     padding: 35,
     justifyContent: "center",
+    marginBottom: 25,
   },
   title: {
     fontSize: 20,
-    fontFamily: "MaliBold",
+    fontFamily: "ComicNeueAngularBold",
     marginBottom: 10,
     textAlign: "center",
   },
