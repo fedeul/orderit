@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const GridItem = ({ item, onSelected }) => {
   return (
@@ -9,6 +10,7 @@ const GridItem = ({ item, onSelected }) => {
         onPress={() => onSelected(item)}
       >
         <View>
+          <Ionicons name={item.icon} size={36} color="black" />
           <Text styles={styles.title}>{item.name}</Text>
         </View>
       </TouchableOpacity>
@@ -32,11 +34,12 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 3,
     justifyContent: "flex-end",
-    alignItems: "flex-end",
+    alignItems: "flex-start",
     padding: 8,
   },
   title: {
     fontFamily: "ComicNeueAngularBold",
+    fontSize: 36,
   },
 });
 

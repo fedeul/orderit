@@ -4,6 +4,8 @@ import MainNavigator from "./navigation";
 
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
+import { Provider } from "react-redux";
+import store from "./store";
 
 export default function App() {
   const [loaded] = Font.useFonts({
@@ -15,5 +17,9 @@ export default function App() {
     ComicNeueAngularItalic: require("./assets/fonts/ComicNeueAngular-Italic.ttf"),
   });
   if (!loaded) return <AppLoading />;
-  return <MainNavigator />;
+  return (
+    <Provider store={store}>
+      <MainNavigator />
+    </Provider>
+  );
 }

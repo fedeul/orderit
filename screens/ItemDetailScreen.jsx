@@ -7,9 +7,10 @@ import {
   Dimensions,
   ScrollView,
 } from "react-native";
+import { useSelector } from "react-redux";
 
-function ItemDetailScreen({ route }) {
-  const item = route.params.product;
+function ItemDetailScreen() {
+  const item = useSelector((state) => state.items.selected);
 
   let dimensions = Dimensions.get("window");
   let imageHeight = Math.round((dimensions.width * 9) / 16);

@@ -5,7 +5,7 @@ import { BlurView } from "expo-blur";
 import ShopNavigator from "../shop";
 import CartNavigator from "../cart";
 
-import { Feather } from "@expo/vector-icons";
+import { Feather, Ionicons } from "@expo/vector-icons";
 const BottomTabs = createBottomTabNavigator();
 
 const TabNavigator = () => {
@@ -41,7 +41,7 @@ const TabNavigator = () => {
         options={{
           tabBarIcon: ({ focused }) => (
             <View style={styles.item}>
-              <Feather name="shopping-bag" size={20} color="black" />
+              <Ionicons name="basket-outline" size={22} color="black" />
               <Text style={styles.itemText}>Order</Text>
             </View>
           ),
