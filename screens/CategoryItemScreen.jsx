@@ -10,7 +10,6 @@ function CategoryItemScreen({ navigation }) {
   const category = useSelector((state) => state.categories.selected);
 
   useEffect(() => {
-    console.log("Screen: " + category.id);
     dispatch(filteredItem(category.id));
   }, []);
 
@@ -26,11 +25,12 @@ function CategoryItemScreen({ navigation }) {
   );
 
   return (
-    <View style={{ marginBottom: 75 }}>
+    <View>
       <FlatList
         data={categoryItems}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
+        numColumns={2}
       />
     </View>
   );

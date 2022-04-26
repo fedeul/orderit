@@ -12,7 +12,6 @@ function CategoriesScreen({ navigation }) {
     dispatch(selectCategory(item.id));
     navigation.navigate("Item", {
       category: item,
-      // name: item.name,
     });
   };
 

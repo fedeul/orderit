@@ -10,13 +10,11 @@ const initialState = {
 const ItemsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SELECT_ITEM:
-      console.log("SELECT_ITEM " + action.itemID);
       return {
         ...state,
         selected: state.items.find((item) => item.id === action.itemID),
       };
     case FILTERED_ITEM:
-      console.log("FILTERED_ITEM " + action.categoryID);
       return {
         ...state,
         filteredItem: state.items.filter(
