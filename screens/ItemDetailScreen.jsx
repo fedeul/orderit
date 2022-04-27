@@ -6,14 +6,20 @@ import {
   Image,
   Dimensions,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
-import { useSelector } from "react-redux";
+import { Ionicons } from "@expo/vector-icons";
+import { useSelector, useDispatch } from "react-redux";
+import { addItem } from "../store/actions/cart.action";
 
 function ItemDetailScreen() {
+  const dispatch = useDispatch();
   const item = useSelector((state) => state.items.selected);
 
   let dimensions = Dimensions.get("window");
   let imageHeight = Math.round((dimensions.width * 9) / 16);
+
+  const handlerAddItemCart = () => dispatch(addItem(item));
 
   return (
     <View style={styles.container}>
@@ -29,9 +35,24 @@ function ItemDetailScreen() {
           source={{ uri: item.img }}
         />
         <Text>{item.cap}</Text>
-        <View style={{ marginVertical: 35 }}>
-          <Text style={styles.details}>Price ${item.price}</Text>
-          <Text style={styles.details}>Stock: {item.stock}</Text>
+        <View
+          style={{
+            marginVertical: 35,
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <View>
+            <Text style={styles.details}>Price ${item.price}</Text>
+            <Text style={styles.details}>Stock: {item.stock}</Text>
+          </View>
+          <TouchableOpacity onPress={handlerAddItemCart}>
+            <View style={styles.confirm}>
+              <Text style={{ fontWeight: "500" }}>Add to </Text>
+              <Ionicons name="basket-outline" size={22} color="black" />
+            </View>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
@@ -43,19 +64,29 @@ const styles = StyleSheet.create({
     // flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    marginHorizontal: 35,
-    padding: 35,
+    paddingHorizontal: 35,
     justifyContent: "center",
-    marginBottom: 25,
+    paddingBottom: 55,
   },
   title: {
     fontSize: 20,
     fontFamily: "ComicNeueAngularBold",
-    marginBottom: 10,
+    paddingTop: 30,
+    marginBottom: 5,
     textAlign: "center",
   },
   details: {
     fontSize: 18,
+  },
+  confirm: {
+    flexDirection: "row",
+    backgroundColor: "#ebe659",
+    borderRadius: 50,
+    padding: 10,
+    width: 200,
+    margin: 15,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

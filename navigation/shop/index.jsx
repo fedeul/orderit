@@ -18,7 +18,7 @@ const ShopNavigator = () => {
           backgroundColor: Platform.OS === "ios" ? COLORS.primary : "",
         },
         headerShadowVisible: true,
-        headerTintColor: "white",
+        headerTintColor: "black",
         // headerBackTitleVisible: false,
       }}
     >
@@ -35,7 +35,7 @@ const ShopNavigator = () => {
       <Stack.Screen
         name="Detail"
         component={ItemDetailScreen}
-        options={({ route }) => ({ title: route.params.item.name })}
+        // options={({ route }) => ({ title: route.params.item.name })}
       />
     </Stack.Navigator>
   );

@@ -21,7 +21,9 @@ const ProductItem = ({ item, onSelected }) => {
           />
         </View>
         <View style={{ ...styles.container }}>
-          <Text style={styles.title}>{item.name}</Text>
+          <Text adjustsFontSizeToFit={true} style={styles.title}>
+            {item.name}
+          </Text>
           <Text style={styles.details}>Price ${item.price}</Text>
         </View>
       </TouchableOpacity>
@@ -37,14 +39,15 @@ const styles = StyleSheet.create({
     height: 150,
   },
   container: {
-    flex: 1,
+    // flex: 1,
+    maxHeight: 200,
     borderRadius: 6,
     shadowColor: "black",
     shadowOpacity: 0.26,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 6,
     elevation: 3,
-    justifyContent: "flex-end",
+    justifyContent: "space-evenly",
     alignItems: "center",
     padding: 8,
   },

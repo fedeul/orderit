@@ -27,6 +27,7 @@ function CategoryItemScreen({ navigation }) {
   return (
     <View>
       <FlatList
+        // style={{ marginBottom: 5 }}
         data={categoryItems}
         keyExtractor={(item) => item.id}
         renderItem={renderItem}

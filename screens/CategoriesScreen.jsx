@@ -21,6 +21,7 @@ function CategoriesScreen({ navigation }) {
 
   return (
     <FlatList
+      // style={{ marginBottom: 5 }}
       data={categories}
       keyExtractor={(item) => item.id}
       renderItem={renderGridItem}

@@ -1,9 +1,10 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, View, Text } from "react-native";
-import { BlurView } from "expo-blur";
+// import { BlurView } from "expo-blur";
 import ShopNavigator from "../shop";
 import CartNavigator from "../cart";
+import OrderNavigator from "../order";
 
 import { Feather, Ionicons } from "@expo/vector-icons";
 const BottomTabs = createBottomTabNavigator();
@@ -42,6 +43,19 @@ const TabNavigator = () => {
           tabBarIcon: ({ focused }) => (
             <View style={styles.item}>
               <Ionicons name="basket-outline" size={22} color="black" />
+              <Text style={styles.itemText}>Basket</Text>
+            </View>
+          ),
+        }}
+      />
+      <BottomTabs.Screen
+        name="OrderTab"
+        tabBarBadge={2}
+        component={OrderNavigator}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View style={styles.item}>
+              <Ionicons name="list-outline" size={22} color="black" />
               <Text style={styles.itemText}>Order</Text>
             </View>
           ),
@@ -55,12 +69,11 @@ const styles = StyleSheet.create({
     shadowColor: "#cda102",
     shadowOffset: {
       width: 0,
-      height: 5,
+      height: 1,
     },
     shadowOpacity: 0.29,
-    shadowRadius: 4.65,
+    shadowRadius: 5.65,
     elevation: 7,
-
     position: "absolute",
     bottom: 20,
     left: 20,

@@ -6,19 +6,29 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import { CART } from "../data/cart";
+// import { CART } from "../data/cart"; ==DATA SIMULADA==
+
+import { useSelector, useDispatch } from "react-redux";
+import { removeItem, confirmCart } from "../store/actions/cart.action";
 import CartItem from "../components/CartItem";
 
 function CartScreen() {
-  const items = CART;
-  const total = CART.map((item) => item.price).reduce(
-    (prev, curr) => prev + curr,
-    0
-  );
+  // ==DATA SIMULADA==
+  // const items = CART;
+  // const total = CART.map((item) => item.price).reduce(
+  //   (prev, curr) => prev + curr,
+  //   0
+  // );
 
-  const handlerConfirmCart = () => console.log("Confirmar Carrito");
-  const handlerDeleteItem = (item) =>
-    console.log("Eliminar Elemento: " + item.name);
+  const items = useSelector((state) => state.cart.items);
+  const total = useSelector((state) => state.cart.total);
+  const dispatch = useDispatch();
+
+  const handlerConfirmCart = () => {
+    if (items.length > 0) dispatch(confirmCart(items, total));
+    else console.log("Your basket is empty.");
+  };
+  const handlerDeleteItem = (id) => dispatch(removeItem(id));
 
   const renderItem = ({ item }) => (
     <CartItem item={item} onDelete={handlerDeleteItem.bind(this, item)} />
@@ -35,11 +45,14 @@ function CartScreen() {
       </View>
       <View style={styles.footer}>
         <View style={styles.total}>
-          <Text style={styles.text}>total</Text>
+          <Text style={styles.text}>Your total is: $</Text>
           <Text style={styles.text}>{total}</Text>
         </View>
+        <Text style={{ textAlign: "center", paddingBottom: 15 }}>
+          Are you ready?
+        </Text>
         <TouchableOpacity style={styles.confirm} onPress={handlerConfirmCart}>
-          <Text>Confirmar</Text>
+          <Text style={{ fontWeight: "bold" }}>OrderIt!</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -68,7 +81,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     padding: 10,
     width: 300,
-    justifyContent: "center",
     alignItems: "center",
     justifyContent: "space-between",
   },
@@ -80,7 +92,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     fontFamily: "ComicNeueAngular",
-    padding: 8,
   },
 });
 

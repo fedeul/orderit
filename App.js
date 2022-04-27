@@ -1,5 +1,3 @@
-import { View, Text } from "react-native";
-import Styles from "./assets/Styles/mainStyles";
 import MainNavigator from "./navigation";
 
 import * as Font from "expo-font";
