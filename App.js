@@ -1,9 +1,10 @@
 import MainNavigator from "./navigation";
-
+import { StatusBar } from "react-native";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 import { Provider } from "react-redux";
 import store from "./store";
+import { render } from "react-dom";
 
 export default function App() {
   const [loaded] = Font.useFonts({
@@ -15,8 +16,10 @@ export default function App() {
     ComicNeueAngularItalic: require("./assets/fonts/ComicNeueAngular-Italic.ttf"),
   });
   if (!loaded) return <AppLoading />;
+
   return (
     <Provider store={store}>
+      <StatusBar barStyle="dark-content" />
       <MainNavigator />
     </Provider>
   );
