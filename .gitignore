@@ -1,6 +1,6 @@
 node_modules/
 .expo/
--PRUEBAS/
+-PRUEBAS-OldFiles/
 dist/
 npm-debug.*
 *.jks
