@@ -5,6 +5,7 @@ import { StyleSheet, View, Text } from "react-native";
 import ShopNavigator from "../shop";
 import CartNavigator from "../cart";
 import OrderNavigator from "../order";
+import UserNavigator from "../user";
 
 import { Feather, Ionicons } from "@expo/vector-icons";
 const BottomTabs = createBottomTabNavigator();
@@ -57,6 +58,19 @@ const TabNavigator = () => {
             <View style={styles.item}>
               <Ionicons name="list-outline" size={22} color="black" />
               <Text style={styles.itemText}>Order</Text>
+            </View>
+          ),
+        }}
+      />
+      <BottomTabs.Screen
+        name="UserTab"
+        tabBarBadge={2}
+        component={UserNavigator}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View style={styles.item}>
+              <Ionicons name="person-outline" size={22} color="black" />
+              <Text style={styles.itemText}>User</Text>
             </View>
           ),
         }}

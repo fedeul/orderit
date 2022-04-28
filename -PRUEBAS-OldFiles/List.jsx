@@ -43,7 +43,7 @@ const List = () => {
         keyExtractor={(item) => item.id}
       />
       <ModalItem
-        onDelete={onHandlerDelete}
+        // onDelete={onHandlerDelete}
         item={itemSelected}
         visible={modalVisible}
         onCancel={closeModal}

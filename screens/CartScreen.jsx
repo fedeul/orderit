@@ -5,6 +5,7 @@ import {
   View,
   FlatList,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 // import { CART } from "../data/cart"; ==DATA SIMULADA==
 
@@ -26,7 +27,14 @@ function CartScreen() {
 
   const handlerConfirmCart = () => {
     if (items.length > 0) dispatch(confirmCart(items, total));
-    else console.log("Your basket is empty.");
+    // else console.log("Your basket is empty.");
+    else
+      Alert.alert("Your basket is empty", "You need to add some item", [
+        {
+          text: "Ok",
+          style: "cancel",
+        },
+      ]);
   };
   const handlerDeleteItem = (id) => dispatch(removeItem(id));
 
