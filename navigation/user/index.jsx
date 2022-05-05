@@ -1,21 +1,37 @@
 import React from "react";
-import { Text, View, Image } from "react-native";
+import { Platform } from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { COLORS } from "../../constants/colors";
+
+import UserScreen from "../../screens/UserScreen";
+
+const Stack = createNativeStackNavigator();
 
 const UserNavigator = () => {
   return (
-    <View style={{ justifyContent: "center", alignItems: "center" }}>
-      <Image
-        resizeMode="contain"
-        style={{
-          marginVertical: 35,
-          height: 100,
-          width: 100,
-          borderRadius: "100%",
-          paddingHorizontal: 50,
-        }}
-        source={{ uri: "https://avatars.githubusercontent.com/u/63756946?v=4" }}
+    <Stack.Navigator
+      initialRouteName="User profile"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: Platform.OS === "ios" ? COLORS.primary : "",
+        },
+        headerShadowVisible: true,
+        headerTintColor: "black",
+        // headerBackTitleVisible: false,
+      }}
+    >
+      <Stack.Screen
+        name="User profile"
+        component={UserScreen}
+        // options={({ route }) => ({ title: route.params.item.name })}
       />
-    </View>
+      {/* <Stack.Screen
+        name="NewImg"
+        component={NewImg}
+        options={{ title: "New Image" }}
+      /> */}
+    </Stack.Navigator>
   );
 };
+
 export default UserNavigator;

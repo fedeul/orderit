@@ -5,7 +5,7 @@ import { getOrders, deleteOrder } from "../store/actions/order.action";
 import OrderItem from "../components/OrderItem";
 
 const OrderScreen = ({ navigation }) => {
-  const orders = useSelector((state) => state.order.item);
+  const orders = useSelector((state) => state.order.items);
   const dispatch = useDispatch();
 
   const onHandlerDeleteItem = (id) => dispatch(deleteOrder(id));

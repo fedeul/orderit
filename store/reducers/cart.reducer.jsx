@@ -3,6 +3,7 @@ import { ADD_ITEM, REMOVE_ITEM, CONFIRM_CART } from "../actions/cart.action";
 const initialState = {
   items: [],
   total: 0,
+  address: "",
 };
 
 const sumTotal = (list) =>
@@ -41,7 +42,7 @@ const CartReducer = (state = initialState, action) => {
         total: sumTotal(filteredCart),
       };
     case CONFIRM_CART:
-      return { ...state, items: [], total: 0 };
+      return { ...state, items: [], total: 0, address: "" };
     default:
       return state;
   }

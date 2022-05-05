@@ -6,7 +6,10 @@ import {
   FlatList,
   TouchableOpacity,
   Alert,
+  TextInput,
 } from "react-native";
+// import { Feather, Ionicons } from "@expo/vector-icons"; ==FUTURE FUNCTION==
+
 // import { CART } from "../data/cart"; ==DATA SIMULADA==
 
 import { useSelector, useDispatch } from "react-redux";
@@ -23,10 +26,11 @@ function CartScreen() {
 
   const items = useSelector((state) => state.cart.items);
   const total = useSelector((state) => state.cart.total);
+  const address = useSelector((state) => state.cart.address);
   const dispatch = useDispatch();
 
   const handlerConfirmCart = () => {
-    if (items.length > 0) dispatch(confirmCart(items, total));
+    if (items.length > 0) dispatch(confirmCart(items, total, address));
     // else console.log("Your basket is empty.");
     else
       Alert.alert("Your basket is empty", "You need to add some item", [
@@ -59,6 +63,30 @@ function CartScreen() {
         <Text style={{ textAlign: "center", paddingBottom: 15 }}>
           Are you ready?
         </Text>
+        {/*==FUTURE FUNCTION==
+        <View style={{ paddingVertical: 15 }}>
+          <Text style={styles.label}>Address</Text>
+
+          <View style={styles.inputArea}>
+             <View                     
+              style={{
+                backgroundColor: "lightgray",
+                padding: 5,
+                borderRadius: 5,
+              }}
+            >
+              <Feather name="map-pin" size={20} color="black" /> 
+            </View> 
+            <TextInput
+              id="address"
+              label="address"
+              style={styles.input}
+              required
+              autoCapitalize="none"
+            />
+          </View>
+        </View>*/}
+
         <TouchableOpacity style={styles.confirm} onPress={handlerConfirmCart}>
           <Text style={{ fontWeight: "bold" }}>OrderIt!</Text>
         </TouchableOpacity>
@@ -100,6 +128,21 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     fontFamily: "ComicNeueAngular",
+  },
+  inputArea: {
+    paddingVertical: 15,
+    justifyContent: "space-evenly",
+    flexDirection: "row",
+  },
+  label: {
+    marginVertical: 8,
+  },
+  input: {
+    paddingHorizontal: 2,
+    paddingVertical: 5,
+    borderBottomColor: "#ccc",
+    borderBottomWidth: 1,
+    width: "80%",
   },
 });
 
