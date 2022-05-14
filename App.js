@@ -4,7 +4,14 @@ import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 import { Provider } from "react-redux";
 import store from "./store";
-import { render } from "react-dom";
+import { init } from "./db";
+
+init()
+  .then(() => console.log(" Database initialized"))
+  .catch((err) => {
+    console.log("Database fail connect");
+    console.log(err.messenge);
+  });
 
 export default function App() {
   const [loaded] = Font.useFonts({
