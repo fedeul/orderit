@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import { Text, View, Image, TouchableOpacity, StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import * as imageAction from "../store/actions/image.action";
 
 const UserScreen = () => {
   const [pickedImagePath, setPickedImagePath] = useState(pickedImagePath);
+
+  let image = useSelector((state) => state.image);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(imageAction.loadImage());
+  }, []);
 
   const showImagePicker = async () => {
     const permissionResult =
@@ -44,12 +53,20 @@ const UserScreen = () => {
         resizeMode="cover"
         style={styles.imageContainer}
         source={
-          pickedImagePath
+          image.image
             ? {
-                uri: pickedImagePath,
+                uri: image.image,
               }
             : require("../assets/user-icon.png")
         }
+        // -------ASI LO TENÍA ANTES-----
+        // source={
+        //   pickedImagePath
+        //     ? {
+        //         uri: pickedImagePath,
+        //       }
+        //     : require("../assets/user-icon.png")
+        // }
       />
       <View
         style={

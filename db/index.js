@@ -1,4 +1,4 @@
-import { SQLite } from "expo-sqlite";
+import * as SQLite from "expo-sqlite";
 
 const db = SQLite.openDatabase("image.db");
 
@@ -24,7 +24,7 @@ export const insertImage = (image) => {
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        " INSERT INTO image (image) VALUES(?,?,?,?,?);",
+        " INSERT INTO image (image) VALUES(?);",
         [image],
         (_, result) => resolve(result),
         (_, err) => reject(err)
