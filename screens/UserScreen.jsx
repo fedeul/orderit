@@ -28,6 +28,13 @@ const UserScreen = () => {
 
     if (!result.cancelled) {
       setPickedImagePath(result.uri);
+      if (image) {
+        dispatch(imageAction.addImage(result.uri, true));
+        dispatch(imageAction.loadImage());
+      } else {
+        dispatch(imageAction.addImage(result.uri, false));
+        dispatch(imageAction.loadImage());
+      }
     }
   };
 
@@ -35,7 +42,7 @@ const UserScreen = () => {
     const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
 
     if (permissionResult.granted === false) {
-      alert("You've refused to allow this appp to access your camera!");
+      alert("You've refused to allow this app to access your camera!");
       return;
     }
 
@@ -44,6 +51,13 @@ const UserScreen = () => {
     if (!result.cancelled) {
       setPickedImagePath(result.uri);
       console.log(result.uri);
+      if (image) {
+        dispatch(imageAction.addImage(result.uri, true));
+        dispatch(imageAction.loadImage());
+      } else {
+        dispatch(imageAction.addImage(result.uri, false));
+        dispatch(imageAction.loadImage());
+      }
     }
   };
 

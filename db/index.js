@@ -34,6 +34,20 @@ export const insertImage = (image) => {
   return promise;
 };
 
+export const updateImage = (image) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "UPDATE image SET image = ? WHERE ID = 1",
+        [image],
+        (_, result) => resolve(result),
+        (_, err) => reject(err)
+      );
+    });
+  });
+  return promise;
+};
+
 export const fetchImage = () => {
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
