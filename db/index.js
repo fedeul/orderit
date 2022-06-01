@@ -62,17 +62,17 @@ export const fetchImage = () => {
   return promise;
 };
 
-export const deleteImage = (id) => {
-  const promise = new Promise((resolve, reject) => {
-    db.transaction((tx) => {
-      console.log(id);
-      tx.executeSql(
-        "DELETE FROM image WHERE id = ?",
-        [id],
-        (_, result) => resolve(result),
-        (_, err) => reject(err)
-      );
-    });
-  });
-  return promise;
-};
+// export const deleteImage = (id) => {
+//   const promise = new Promise((resolve, reject) => {
+//     db.transaction((tx) => {
+//       console.log(id);
+//       tx.executeSql(
+//         "DELETE FROM image WHERE id = ?",
+//         [id],
+//         (_, result) => resolve(result),
+//         (_, err) => reject(err)
+//       );
+//     });
+//   });
+//   return promise;
+// };

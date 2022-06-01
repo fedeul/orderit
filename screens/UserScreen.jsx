@@ -28,7 +28,7 @@ const UserScreen = () => {
 
     if (!result.cancelled) {
       setPickedImagePath(result.uri);
-      if (image) {
+      if (!image) {
         dispatch(imageAction.addImage(result.uri, true));
         dispatch(imageAction.loadImage());
       } else {
@@ -51,7 +51,7 @@ const UserScreen = () => {
     if (!result.cancelled) {
       setPickedImagePath(result.uri);
       console.log(result.uri);
-      if (image) {
+      if (!image) {
         dispatch(imageAction.addImage(result.uri, true));
         dispatch(imageAction.loadImage());
       } else {
@@ -67,9 +67,9 @@ const UserScreen = () => {
         resizeMode="cover"
         style={styles.imageContainer}
         source={
-          image.image
+          image.image || pickedImagePath
             ? {
-                uri: image.image,
+                uri: image.image || pickedImagePath,
               }
             : require("../assets/user-icon.png")
         }
@@ -82,12 +82,7 @@ const UserScreen = () => {
         //     : require("../assets/user-icon.png")
         // }
       />
-      <View
-        style={
-          styles.container
-          //   flexDirection: "row"
-        }
-      >
+      <View style={styles.container}>
         <View style={styles.gridItem}>
           <TouchableOpacity
             style={{ ...styles.container, backgroundColor: "white" }}
